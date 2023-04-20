@@ -16,5 +16,5 @@ export default function Home() {
       </div>
     );
   }
-  return <div>logged in</div>;
+  return <div>logged in {session?.user?.email}</div>;
 }
