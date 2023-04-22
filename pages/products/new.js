@@ -1,11 +1,14 @@
 import Layout from "@/components/Layout";
 import { useTheme } from "@/contexts/ThemeContext";
-import { Button, Input, Modal, Spacer, Text, Textarea } from "@geist-ui/core";
-import { useEffect, useState } from "react";
+import { Input, Modal, Spacer, Text, Textarea } from "@geist-ui/core";
+import { useState } from "react";
 import { Box, DollarSign } from "@geist-ui/icons";
 import axios from "axios";
+import { redirect } from "next/dist/server/api-utils";
+import { useRouter } from "next/router";
 
 export default function NewProduct() {
+  const router = useRouter();
   const { themeType } = useTheme();
   const textColor = themeType === "light" ? "#111" : "#fff";
   const typeColor = themeType === "light" ? "default" : "secondary";
@@ -17,6 +20,7 @@ export default function NewProduct() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [goToProducts, setToProducts] = useState(false)
 
   const handlePriceChange = (event) => {
     const value = event.target.value;
@@ -32,11 +36,15 @@ export default function NewProduct() {
 
   async function createProduct(event) {
     event.preventDefault();
-
     if (typeof window !== "undefined") {
       const data = { title, description, price };
       await axios.post("/api/products", data);
+      setToProducts(true)
     }
+  }
+
+  if(goToProducts) {
+    router.push('/products')
   }
 
   return (
@@ -56,6 +64,7 @@ export default function NewProduct() {
           Name
         </Text>
         <Input
+          required
           clearable
           icon={<Box color={themeType === "light" ? "black" : "white"} />}
           onChange={(event) => {
@@ -97,6 +106,7 @@ export default function NewProduct() {
         </Text>
         <Input
           clearable
+          required
           icon={
             <DollarSign color={themeType === "light" ? "black" : "white"} />
           }
