@@ -1,21 +1,30 @@
-// contexts/ThemeContext.js
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const ThemeContext = createContext();
 
-export function useTheme() {
-  return useContext(ThemeContext);
-}
+export const useTheme = () => useContext(ThemeContext);
 
-export function ThemeProvider({ children }) {
-  const [themeType, setThemeType] = useState("light");
+export const ThemeProvider = ({ children }) => {
+  const [themeType, setThemeType] = useState("dark");
+
+  useEffect(() => {
+    const storedThemeType = localStorage.getItem("themeType");
+    if (storedThemeType) {
+      setThemeType(storedThemeType);
+    }
+  }, []);
+
   const switchThemes = () => {
-    setThemeType((last) => (last === "dark" ? "light" : "dark"));
+    setThemeType((last) => {
+      const nextTheme = last === "dark" ? "light" : "dark";
+      localStorage.setItem("themeType", nextTheme);
+      return nextTheme;
+    });
   };
 
+  const value = { themeType, switchThemes };
+
   return (
-    <ThemeContext.Provider value={{ themeType, switchThemes }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
-}
+};
