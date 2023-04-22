@@ -3,16 +3,25 @@ import { useSession, signIn } from "next-auth/react";
 import { IoLogoGithub, IoLogoGoogle } from "react-icons/io";
 import Nav from "@/components/Nav";
 import { useTheme } from "@/contexts/ThemeContext";
+import { Sun, Moon } from "@geist-ui/icons";
 
 export default function Layout({ children }) {
+  const { themeType, switchThemes } = useTheme();
   const { data: session } = useSession();
-  const { themeType } = useTheme();
   console.log(session);
 
   if (!session) {
     return (
       <div className="bg-[#1b1b1b] w-screen h-screen flex items-center">
         <div className="text-center w-full flex flex-col items-center space-y-2">
+          {/* Day/night Mode */}
+          <Button
+            iconRight={themeType === "light" ? <Moon /> : <Sun />}
+            onClick={switchThemes}
+            auto
+            type="secondary"
+            px={0.6}
+          ></Button>
           <Button
             icon={<IoLogoGithub />}
             auto

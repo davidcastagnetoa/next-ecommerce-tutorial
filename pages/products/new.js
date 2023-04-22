@@ -33,7 +33,7 @@ export default function NewProduct() {
   async function createProduct(event) {
     event.preventDefault();
 
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const data = { title, description, price };
       await axios.post("/api/products", data);
     }
@@ -111,11 +111,7 @@ export default function NewProduct() {
         />
         <button
           type="submit"
-          style={{
-            background: "#3F83F8",
-            color: "white",
-            borderColor: "#3F83F8",
-          }}
+          className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700"
         >
           Save
         </button>
