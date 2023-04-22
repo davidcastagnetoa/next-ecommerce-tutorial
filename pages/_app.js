@@ -1,12 +1,20 @@
-import '@/styles/globals.css';
-import { SessionProvider } from "next-auth/react"
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import "@/styles/globals.css";
+import { CssBaseline, GeistProvider } from "@geist-ui/core";
+import { SessionProvider } from "next-auth/react";
 
 export default function App({
-  Component, pageProps: { session, ...pageProps }
+  Component,
+  pageProps: { session, ...pageProps },
 }) {
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps}/>
-    </SessionProvider>
-  )
+    <GeistProvider>
+      <CssBaseline />
+      <SessionProvider session={session}>
+        <ThemeProvider>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </SessionProvider>
+    </GeistProvider>
+  );
 }

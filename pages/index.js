@@ -1,20 +1,49 @@
-import { useSession, signIn, signOut } from "next-auth/react";
+import Layout from "@/components/Layout";
+import { useTheme } from "@/contexts/ThemeContext";
+import { Button, User, CssBaseline, GeistProvider } from "@geist-ui/core";
+import { LogOut, Sun, Moon } from "@geist-ui/icons";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Home() {
   const { data: session } = useSession();
-  if (!session) {
-    return (
-      <div className="bg-blue-900 w-screen h-screen flex items-center">
-        <div className="text-center w-full">
-          <button
-            onClick={() => signIn("google")}
-            className="bg-white p-2 rounded-lg px-4 "
+  const { themeType, switchThemes } = useTheme();
+  console.log({ session });
+
+  return (
+    <GeistProvider themeType={themeType}>
+      <CssBaseline>
+        <Layout>
+          <div
+            className={`${
+              themeType === "light" ? "text-black" : "text-white"
+            } flex justify-between`}
           >
-            Login with Google
-          </button>
-        </div>
-      </div>
-    );
-  }
-  return <div>logged in {session?.user?.email}</div>;
+            Hello, {session?.user?.name}
+            <div className="space-x-1">
+              <User src={session?.user?.image} name={session?.user?.name}>
+                {session?.user?.email}
+              </User>
+              {/* Day/night Mode */}
+              <Button
+                iconRight={themeType === "light" ? <Moon /> : <Sun />}
+                onClick={switchThemes}
+                auto
+                type="secondary"
+                px={0.6}
+              ></Button>
+              {/* LogOut */}
+              <Button
+                icon={<LogOut />}
+                onClick={() => signOut()}
+                auto
+                ghost
+                type="default"
+                px={0.6}
+              ></Button>
+            </div>
+          </div>
+        </Layout>
+      </CssBaseline>
+    </GeistProvider>
+  );
 }
