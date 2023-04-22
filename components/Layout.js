@@ -50,7 +50,7 @@ export default function Layout({ children }) {
       <div
         className={`${
           themeType === "light" ? "bg-white" : "bg-black"
-        } flex-grow mr-2 p-4`}
+        } flex-grow p-4`}
       >
         {children}
       </div>

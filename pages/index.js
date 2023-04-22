@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <GeistProvider themeType={themeType}>
       <CssBaseline>
-        <Layout>
+        <Layout themeType={themeType}>
           <div
             className={`${
               themeType === "light" ? "text-black" : "text-white"
