@@ -19,8 +19,6 @@ export default function ProductForm({
   description: existingDescription,
   price: existingPrice,
 }) {
-  console.log(`The _id is : ${_id}`);
-  console.log({_id});
   const [title, setTitle] = useState(existingTitle || "");
   const [description, setDescription] = useState(existingDescription || "");
   const [price, setPrice] = useState(existingPrice || "");
@@ -47,13 +45,17 @@ export default function ProductForm({
     }
   };
 
-  async function createProduct(event) {
+  async function saveProduct(event) {
     event.preventDefault();
-    if (typeof window !== "undefined") {
-      const data = { title, description, price };
+    const data = { title, description, price };
+    if (_id) {
+      //update
+      await axios.put("/api/products", {...data,_id});
+    } else {
+      // create
       await axios.post("/api/products", data);
-      setToProducts(true);
     }
+    setToProducts(true);
   }
 
   if (goToProducts) {
@@ -63,7 +65,7 @@ export default function ProductForm({
   return (
     <GeistProvider themeType={themeType}>
       <CssBaseline>
-        <form onSubmit={createProduct}>
+        <form onSubmit={saveProduct}>
           <Spacer h={0.5} />
           <Text
             style={{ color: `${themeType === "light" ? "black" : "white"}` }}

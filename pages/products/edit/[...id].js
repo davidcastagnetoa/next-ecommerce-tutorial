@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { Text, Button, GeistProvider, CssBaseline } from "@geist-ui/core";
+import { Text, GeistProvider, CssBaseline } from "@geist-ui/core";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useEffect, useState } from "react";

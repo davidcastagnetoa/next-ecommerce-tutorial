@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { useAppTheme, useTheme } from "@/contexts/ThemeContext";
+import { useAppTheme } from "@/contexts/ThemeContext";
 import { CssBaseline, GeistProvider } from "@geist-ui/core";
 
 export default function Settings() {

@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { useAppTheme, useTheme } from "@/contexts/ThemeContext";
+import { useAppTheme } from "@/contexts/ThemeContext";
 import {
   Button,
   CssBaseline,
@@ -25,6 +25,7 @@ export default function Products() {
     const removeHandler = () => {
       setProducts((last) => last.filter((_, dataIndex) => dataIndex !== index));
     };
+
     return (
       <Button
         type="error"
@@ -83,7 +84,26 @@ export default function Products() {
               prop="operation"
               label="Eliminar"
               width={150}
-              render={renderAction}
+              // render={renderAction}
+              render={(value, product) => (
+                <Link href={`/products/delete/${product._id}`}>
+                  <Button
+                    type="error"
+                    auto
+                    scale={2 / 3}
+                    font="13px"
+                    px={0.6}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Edit size={16} />
+                  </Button>
+                </Link>
+              )}
             />
           </Table>
         </Layout>

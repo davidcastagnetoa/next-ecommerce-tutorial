@@ -8,7 +8,7 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   return (
-    <GeistProvider>
+    <GeistProvider >
       <CssBaseline />
       <SessionProvider session={session}>
         <ThemeProvider>
