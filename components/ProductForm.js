@@ -14,13 +14,16 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 export default function ProductForm({
+  _id,
   title: existingTitle,
   description: existingDescription,
   price: existingPrice,
 }) {
-  const [title, setTitle] = useState(existingTitle || '');
-  const [description, setDescription] = useState(existingDescription || '');
-  const [price, setPrice] = useState(existingPrice || '');
+  console.log(`The _id is : ${_id}`);
+  console.log({_id});
+  const [title, setTitle] = useState(existingTitle || "");
+  const [description, setDescription] = useState(existingDescription || "");
+  const [price, setPrice] = useState(existingPrice || "");
   const router = useRouter();
   const { themeType } = useAppTheme();
   const textColor = themeType === "light" ? "#111" : "#fff";

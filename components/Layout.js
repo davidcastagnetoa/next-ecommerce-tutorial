@@ -6,9 +6,7 @@ import { useAppTheme } from "@/contexts/ThemeContext";
 import { Sun, Moon } from "@geist-ui/icons";
 
 export default function Layout({ children }) {
-  // const { themeType, switchThemes } = useTheme();
   const { themeType, switchThemes } = useAppTheme();
-  // const { themeType, switchThemes } = useThemeContext();
   const { data: session } = useSession();
   console.log(session);
 
@@ -51,8 +49,8 @@ export default function Layout({ children }) {
       <Nav session={session} />
       <div
         className={`${
-          themeType === "light" ? "bg-white" : "bg-black"
-        } flex-grow p-4`}
+          themeType === "light" ? "bg-[#fafafa]" : "bg-[#111111]"
+        } flex-grow px-12 py-6`}
       >
         {children}
       </div>

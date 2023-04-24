@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { useAppTheme, useTheme } from "@/contexts/ThemeContext";
+import { useAppTheme } from "@/contexts/ThemeContext";
 import { Button, User, CssBaseline, GeistProvider } from "@geist-ui/core";
 import { LogOut, Sun, Moon } from "@geist-ui/icons";
 import { useSession, signOut } from "next-auth/react";

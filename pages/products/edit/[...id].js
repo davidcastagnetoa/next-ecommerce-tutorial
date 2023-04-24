@@ -32,8 +32,6 @@ export default function EditProductPage() {
             Edit Product.
           </Text>
           {productInfo && <ProductForm {...productInfo} />}
-          <Text p>edit product here</Text>
-          <Button>Access</Button>
         </Layout>
       </CssBaseline>
     </GeistProvider>

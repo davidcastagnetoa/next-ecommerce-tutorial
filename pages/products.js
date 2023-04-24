@@ -5,6 +5,7 @@ import {
   CssBaseline,
   GeistProvider,
   Link,
+  Spacer,
   Table,
 } from "@geist-ui/core";
 import axios from "axios";
@@ -48,11 +49,10 @@ export default function Products() {
     <GeistProvider themeType={themeType}>
       <CssBaseline>
         <Layout themeType={themeType}>
-          <div
-            className={`${themeType === "light" ? "text-black" : "text-white"}`}
-          >
+          <Button type="default">
             <Link href={"/products/new"}>Add new product.</Link>
-          </div>
+          </Button>
+          <Spacer/>
           <Table data={products}>
             <Table.Column prop="title" label="title" />
             <Table.Column prop="description" label="description" />

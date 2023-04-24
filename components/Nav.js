@@ -11,21 +11,24 @@ import { useAppTheme  } from "@/contexts/ThemeContext"
 export default function Nav() {
   const {data: session} = useSession();
   const { themeType } = useAppTheme ();
-  const inactiveLink = 'flex items-center gap-1 py-3 text-[#a0a0a0] hover:bg-blue-500 hover:text-white px-8';
-  const activeLink = inactiveLink + ' bg-blue-500 text-white';
+  // const inactiveLink = 'flex items-center gap-1 py-3 text-[#a0a0a0] hover:bg-[#666666] hover:text-white px-8';
+  const inactiveLink = themeType === 'light' ? "text-black "  + 'flex items-center gap-1 py-3 text-[#a0a0a0] hover:bg-[#999] hover:text-white px-8' : "text-white " + 'flex items-center gap-1 py-3 text-[#a0a0a0] hover:bg-[#444] hover:text-white px-8';
+  const activeLink = themeType === 'light' ? inactiveLink + ' bg-[#999] text-white' : inactiveLink + ' bg-[#444] text-white';
   const router = useRouter();
   const { pathname } = router;
   return (
-    <aside className={`${ themeType === 'light' ? "bg-black" : "bg-[#181818]" } text-white`}>
+    <aside className={`${ themeType === 'light' ? "bg-white" : "bg-black" } text-white`}>
       <Link href={"/"} className="flex items-center gap-1 m-4">
         <SiHomeassistantcommunitystore className="text-2xl mr-2" />
         <div className="flex flex-col">
-          <span className="text-base">{session?.user?.name}</span>
-          <span className="text-xs text-[#a0a0a0]">{session?.user?.email}</span>
+          <span className={`${ themeType === 'light' ? "text-black" : "text-[#888888]" } text-base `}>{session?.user?.name}</span>
+          <span className={`${ themeType === 'light' ? "text-black" : "text-[#888888]" } text-xs `}>{session?.user?.email}</span>
         </div>
       </Link>
-      <Divider style={{ background: "#6D6D6D" }} />
-      <nav className="flex flex-col gap-0.5 ">
+      {/* <Divider style={{ background: "#eaeaea" }} /> */}
+      <Divider style={{ background: themeType === 'light' ? '#eaeaea' : '#333333' }} />
+
+      <nav className="flex flex-col gap-0 ">
         <Link
           href={"/"}
           className={pathname === '/' ? activeLink : inactiveLink}
