@@ -1,9 +1,10 @@
 import Layout from "@/components/Layout";
 import ProductForm from "@/components/ProductForm";
+import { useAppTheme } from "@/contexts/ThemeContext";
 import { CssBaseline, GeistProvider, useTheme } from "@geist-ui/core";
 
 export default function NewProduct() {
-  const { themeType } = useTheme();
+  const { themeType } = useAppTheme();
   return (
     <GeistProvider themeType={themeType}>
       <CssBaseline>

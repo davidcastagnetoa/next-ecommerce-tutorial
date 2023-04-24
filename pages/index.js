@@ -1,12 +1,12 @@
 import Layout from "@/components/Layout";
-import { useTheme } from "@/contexts/ThemeContext";
+import { useAppTheme, useTheme } from "@/contexts/ThemeContext";
 import { Button, User, CssBaseline, GeistProvider } from "@geist-ui/core";
 import { LogOut, Sun, Moon } from "@geist-ui/icons";
 import { useSession, signOut } from "next-auth/react";
 
 export default function Home() {
   const { data: session } = useSession();
-  const { themeType, switchThemes } = useTheme();
+  const { themeType, switchThemes } = useAppTheme();
   console.log({ session });
 
   return (

@@ -1,9 +1,9 @@
 import Layout from "@/components/Layout";
-import { useTheme } from "@/contexts/ThemeContext";
+import { useAppTheme, useTheme } from "@/contexts/ThemeContext";
 import { CssBaseline, GeistProvider } from "@geist-ui/core";
 
 export default function Orders() {
-  const { themeType } = useTheme();
+  const { themeType } = useAppTheme();
   return (
     <GeistProvider themeType={themeType}>
       <CssBaseline>

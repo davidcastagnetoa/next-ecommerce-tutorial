@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { useTheme } from "@/contexts/ThemeContext";
+import { useAppTheme, useTheme } from "@/contexts/ThemeContext";
 import {
   Button,
   CssBaseline,
@@ -43,7 +43,7 @@ export default function Products() {
     );
   };
 
-  const { themeType } = useTheme();
+  const { themeType } = useAppTheme();
   return (
     <GeistProvider themeType={themeType}>
       <CssBaseline>

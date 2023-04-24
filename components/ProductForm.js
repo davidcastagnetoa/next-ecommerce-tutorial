@@ -1,4 +1,4 @@
-import { useTheme } from "@/contexts/ThemeContext";
+import { useAppTheme, useTheme } from "@/contexts/ThemeContext";
 import {
   CssBaseline,
   GeistProvider,
@@ -15,7 +15,8 @@ import { useRouter } from "next/router";
 
 export default function ProductForm() {
   const router = useRouter();
-  const { themeType } = useTheme();
+  // const { themeType } = useTheme();
+  const { themeType } = useAppTheme();
   const textColor = themeType === "light" ? "#111" : "#fff";
   const typeColor = themeType === "light" ? "default" : "secondary";
   const [error, setError] = useState("");

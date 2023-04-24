@@ -3,9 +3,10 @@ import { useTheme, Text, Button } from "@geist-ui/core";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useEffect } from "react";
+import { useAppTheme } from "@/contexts/ThemeContext";
 
 export default function EditProductPage() {
-  const { themeType } = useTheme();
+  const { themeType } = useAppTheme();
   const router = useRouter();
   console.log({ router });
   const { id } = router.query;

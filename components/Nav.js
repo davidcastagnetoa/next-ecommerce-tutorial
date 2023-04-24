@@ -6,11 +6,11 @@ import { SlHome } from "react-icons/sl";
 import { Divider } from "@geist-ui/core";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { useTheme } from "@/contexts/ThemeContext"
+import { useAppTheme  } from "@/contexts/ThemeContext"
 
 export default function Nav() {
   const {data: session} = useSession();
-  const { themeType } = useTheme();
+  const { themeType } = useAppTheme ();
   const inactiveLink = 'flex items-center gap-1 py-3 text-[#a0a0a0] hover:bg-blue-500 hover:text-white px-8';
   const activeLink = inactiveLink + ' bg-blue-500 text-white';
   const router = useRouter();
