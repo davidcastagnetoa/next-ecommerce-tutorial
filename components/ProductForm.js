@@ -13,9 +13,15 @@ import { Box, DollarSign } from "@geist-ui/icons";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-export default function ProductForm() {
+export default function ProductForm({
+  title: existingTitle,
+  description: existingDescription,
+  price: existingPrice,
+}) {
+  const [title, setTitle] = useState(existingTitle || '');
+  const [description, setDescription] = useState(existingDescription || '');
+  const [price, setPrice] = useState(existingPrice || '');
   const router = useRouter();
-  // const { themeType } = useTheme();
   const { themeType } = useAppTheme();
   const textColor = themeType === "light" ? "#111" : "#fff";
   const typeColor = themeType === "light" ? "default" : "secondary";
@@ -24,9 +30,6 @@ export default function ProductForm() {
   const closeHandler = (event) => {
     setState(false);
   };
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
   const [goToProducts, setToProducts] = useState(false);
 
   const handlePriceChange = (event) => {
@@ -58,12 +61,6 @@ export default function ProductForm() {
     <GeistProvider themeType={themeType}>
       <CssBaseline>
         <form onSubmit={createProduct}>
-          <Text
-            style={{ color: `${themeType === "light" ? "black" : "white"}` }}
-            h4
-          >
-            New Product.
-          </Text>
           <Spacer h={0.5} />
           <Text
             style={{ color: `${themeType === "light" ? "black" : "white"}` }}

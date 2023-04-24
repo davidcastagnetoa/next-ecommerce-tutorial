@@ -2,8 +2,7 @@ import { Button } from "@geist-ui/core";
 import { useSession, signIn } from "next-auth/react";
 import { IoLogoGithub, IoLogoGoogle } from "react-icons/io";
 import Nav from "@/components/Nav";
-import { useAppTheme, useTheme } from "@/contexts/ThemeContext";
-import { useThemeContext } from "@/contexts/ThemeContext";
+import { useAppTheme } from "@/contexts/ThemeContext";
 import { Sun, Moon } from "@geist-ui/icons";
 
 export default function Layout({ children }) {

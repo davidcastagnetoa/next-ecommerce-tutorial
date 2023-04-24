@@ -1,28 +1,41 @@
 import Layout from "@/components/Layout";
-import { useTheme, Text, Button } from "@geist-ui/core";
+import { Text, Button, GeistProvider, CssBaseline } from "@geist-ui/core";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppTheme } from "@/contexts/ThemeContext";
+import ProductForm from "@/components/ProductForm";
 
 export default function EditProductPage() {
   const { themeType } = useAppTheme();
+  const [productInfo, setProductInfo] = useState(null);
   const router = useRouter();
-  console.log({ router });
-  const { id } = router.query;
+  console.log(router);
+  const {id} = router.query;
   useEffect(() => {
     if (!id) {
       return;
     }
-    axios.get("api/products?id=" + id).then((response) => {
-      console.log(response.data);
+    axios.get('/api/products?id='+id).then(response => {
+      setProductInfo(response.data);
     });
-  }, []);
+  }, [id]);
 
   return (
-    <Layout themeType={themeType}>
-      <Text p>edit product here</Text>
-      <Button>Access</Button>
-    </Layout>
+    <GeistProvider themeType={themeType}>
+      <CssBaseline>
+        <Layout themeType={themeType}>
+          <Text
+            style={{ color: `${themeType === "light" ? "black" : "white"}` }}
+            h4
+          >
+            Edit Product.
+          </Text>
+          {productInfo && <ProductForm {...productInfo} />}
+          <Text p>edit product here</Text>
+          <Button>Access</Button>
+        </Layout>
+      </CssBaseline>
+    </GeistProvider>
   );
 }
