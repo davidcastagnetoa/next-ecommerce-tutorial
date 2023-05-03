@@ -55,7 +55,7 @@ export default function Products() {
           </Button>
           <Spacer/>
           <Table data={products}>
-            <Table.Column prop="title" label="title" />
+            <Table.Column prop="Category Name" label="Category Name" />
             <Table.Column prop="description" label="description" />
             <Table.Column prop="price" label="price" />
             <Table.Column

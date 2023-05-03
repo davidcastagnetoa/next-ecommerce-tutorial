@@ -1,4 +1,4 @@
-[Tutorial](https://youtu.be/dTFXufTgfOE?t=7111)
+[Tutorial](https://youtu.be/dTFXufTgfOE?t=11826)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import { FaCog, FaList } from "react-icons/fa";
 import { GoPackage } from "react-icons/go";
+import { MdCategory } from "react-icons/md";
 import { SlHome } from "react-icons/sl";
 import { Divider } from "@geist-ui/core";
 import { useRouter } from "next/router";
@@ -11,7 +12,6 @@ import { useAppTheme  } from "@/contexts/ThemeContext"
 export default function Nav() {
   const {data: session} = useSession();
   const { themeType } = useAppTheme ();
-  // const inactiveLink = 'flex items-center gap-1 py-3 text-[#a0a0a0] hover:bg-[#666666] hover:text-white px-8';
   const inactiveLink = themeType === 'light' ? "text-black "  + 'flex items-center gap-1 py-3 text-[#a0a0a0] hover:bg-[#999] hover:text-white px-8' : "text-white " + 'flex items-center gap-1 py-3 text-[#a0a0a0] hover:bg-[#444] hover:text-white px-8';
   const activeLink = themeType === 'light' ? inactiveLink + ' bg-[#999] text-white' : inactiveLink + ' bg-[#444] text-white';
   const router = useRouter();
@@ -25,7 +25,6 @@ export default function Nav() {
           <span className={`${ themeType === 'light' ? "text-black" : "text-[#888888]" } text-xs `}>{session?.user?.email}</span>
         </div>
       </Link>
-      {/* <Divider style={{ background: "#eaeaea" }} /> */}
       <Divider style={{ background: themeType === 'light' ? '#eaeaea' : '#333333' }} />
 
       <nav className="flex flex-col gap-0 ">
@@ -42,6 +41,13 @@ export default function Nav() {
         >
           <GoPackage className="mr-4" />
           Products
+        </Link>
+        <Link
+          href={"/categories"}
+          className={pathname.includes('/categories') ? activeLink : inactiveLink}
+        >
+          <MdCategory className="mr-4" />
+          Categories
         </Link>
         <Link
           href={"/orders"}
